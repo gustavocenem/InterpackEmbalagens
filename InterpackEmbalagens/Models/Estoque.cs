@@ -7,7 +7,7 @@ namespace InterpackEmbalagens.Models
         public int Id { get; set; }
 
         public string Numero { get; set; } = "";
-        public string Status { get; set; } = ""; // pago ou pendente
+        public string Status { get; set; } = ""; // pago, pendente ou cancelado
         public DateOnly? DataEmissao { get; set; }
         public DateOnly? DataVencimento { get; set; }
 

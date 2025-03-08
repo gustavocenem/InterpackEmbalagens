@@ -4,8 +4,8 @@
 	ViewData["Title"] = "Vendas";
 }
 
-@* <h2 class="text-center mb-3">Vendas</h2>
-<a class="btn btn-primary" style="margin-bottom: 10px;" asp-page="/Estoques/Create">Nova Entrada</a> *@
+<h2 class="text-center mb-3">Vendas</h2>
+<a class="btn btn-primary" style="margin-bottom: 10px;" asp-page="/Estoques/Create">Nova Entrada</a>
 
 <table>
 	<thead>
@@ -16,8 +16,8 @@
 			<th>Cliente</th>
 			<th>Preço</th>
 			<th>Data Emissão</th>
-			<th>Data Vencimento</th>@* 
-			<th></th> *@
+			<th>Data Vencimento</th>
+			@* <th></th> *@
 		</tr>
 	</thead>
 
@@ -31,7 +31,7 @@
 				<td>R$ @(item.Quantidade * item.Preco)</td>
 				<td>@(item.DataEmissao)</td>
 				<td>@(item.DataVencimento)</td>
-@* 				<td style="white-space:nowrap">
+				@* <td style="white-space:nowrap">
 					<a class="btn btn-primary btn-sm" asp-page="/Estoques/Edit" asp-route-id="@item.Id">Editar</a>
 					<a class="btn btn-danger btn-sm" asp-page="/Estoques/Delete" asp-route-id="@item.Id">Deletar</a>
 				</td> *@

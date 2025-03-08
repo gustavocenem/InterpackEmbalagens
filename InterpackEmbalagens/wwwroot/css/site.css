@@ -29,3 +29,34 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    text-align: center;
+    padding: 30px;
+}
+
+table thead {
+    position: sticky;
+    top: 0px;
+}
+
+table thead tr {
+    background-color: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+}
+
+tbody tr:hover {
+    background-color: rgb(225 225 225);
+}
+
+th {
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+

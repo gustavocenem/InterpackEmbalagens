@@ -1,0 +1,41 @@
+﻿@page
+@model InterpackEmbalagens.Pages.Estoques.IndexModel
+@{
+	ViewData["Title"] = "Vendas";
+}
+
+@* <h2 class="text-center mb-3">Vendas</h2>
+<a class="btn btn-primary" style="margin-bottom: 10px;" asp-page="/Estoques/Create">Nova Entrada</a> *@
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Nmr Fatura</th>
+			<th>Status</th>
+			<th>Cliente</th>
+			<th>Preço</th>
+			<th>Data Emissão</th>
+			<th>Data Vencimento</th>@* 
+			<th></th> *@
+		</tr>
+	</thead>
+
+	<tbody class="table-group-divider">
+		@foreach (var item in Model.estoqueLst) {
+			<tr>
+				<td>@(item.Id)</td>
+				<td>@(item.Numero)</td>
+				<td>@(item.Status)</td>
+				<td>@(item.NomeCliente)</td>
+				<td>R$ @(item.Quantidade * item.Preco)</td>
+				<td>@(item.DataEmissao)</td>
+				<td>@(item.DataVencimento)</td>
+@* 				<td style="white-space:nowrap">
+					<a class="btn btn-primary btn-sm" asp-page="/Estoques/Edit" asp-route-id="@item.Id">Editar</a>
+					<a class="btn btn-danger btn-sm" asp-page="/Estoques/Delete" asp-route-id="@item.Id">Deletar</a>
+				</td> *@
+			</tr>
+		}
+	</tbody>
+</table>

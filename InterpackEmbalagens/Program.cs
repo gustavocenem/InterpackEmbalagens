@@ -1,7 +1,15 @@
+using InterpackEmbalagens.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("ConexaoPadrao");
+    options.UseSqlServer(connectionString);
+});
 
 var app = builder.Build();
 

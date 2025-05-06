@@ -1,0 +1,185 @@
+﻿@page
+@model InterpackEmbalagens.Pages.Estoques.EditarModel
+@{
+}
+
+
+
+<h2 class="text-center mb-3">Editar Entrada</h2>
+
+
+
+@if (Model.confirmacaoMsg.Length > 0)
+{
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		<strong>@Model.confirmacaoMsg</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+	</div>
+}
+
+<form method="post">
+	<div class="row g-2 mb-3">
+		<div class="col-lg-6">
+
+			<div class="card h-100">
+				<div class="card-header">
+					Detalhes da Entrada
+				</div>
+				<div class="card-body">
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">ID entrada</label>
+						<div class="col-sm-8">
+							<input class="form-control-plaintext" readonly value="@Model.Estoque.Id"/>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Número entrada</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="EstoqueDto.Numero" />
+							<span asp-validation-for="EstoqueDto.Numero" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Status Pagamento</label>
+						<div class="col-sm-8">
+							<select class="form-select" asp-for="EstoqueDto.Status">
+								<option value="Pendente">Pendente</option>
+								<option value="Pago">Pago</option>
+								<option value="Cancelado">Cancelado</option>
+							</select>
+							<span asp-validation-for="EstoqueDto.Status" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Data Emissão</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="date" asp-for="EstoqueDto.DataEmissao" />
+							<span asp-validation-for="EstoqueDto.DataEmissao" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Data Vencimento</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="date" asp-for="EstoqueDto.DataVencimento" />
+							<span asp-validation-for="EstoqueDto.DataVencimento" class="text-danger"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<div class="col-lg-6">
+
+			<div class="card h-100">
+				<div class="card-header">
+					Detalhes do Cliente
+				</div>
+				<div class="card-body">
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Cliente</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="EstoqueDto.NomeCliente" />
+							<span asp-validation-for="EstoqueDto.NomeCliente" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Email</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="EstoqueDto.Email" />
+							<span asp-validation-for="EstoqueDto.Email" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Celular</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="EstoqueDto.Celular" />
+							<span asp-validation-for="EstoqueDto.Celular" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Endereço</label>
+						<div class="col-sm-8">
+							<input class="form-control" asp-for="EstoqueDto.Endereco" />
+							<span asp-validation-for="EstoqueDto.Endereco" class="text-danger"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="card mb-3">
+		<div class="card-header">
+			Detalhes do Serviço
+		</div>
+		<div class="card-body">
+
+			<div class="row g-2">
+				<div class="col-lg-6">
+					<label class="form-label">Serviço</label>
+					<select class="form-select" asp-for="EstoqueDto.Servico">
+						<option value="Venda">Venda</option>
+						<option value="Representacao">Representacao</option>
+						<option value="Servico">Servico</option>
+					</select>
+					<span asp-validation-for="EstoqueDto.Servico" class="text-danger"></span>
+				</div>
+
+				<div class="col-lg-2 col-sm-4">
+					<label class="form-label">Quantidade</label>
+					<input class="form-control" asp-for="EstoqueDto.Quantidade" id="quantidadeInput" oninput="updatePrecoTotal()" />
+					<span asp-validation-for="EstoqueDto.Quantidade" class="text-danger"></span>
+				</div>
+
+				<div class="col-lg-2 col-sm-4">
+					<label class="form-label">Preço</label>
+					<input class="form-control" asp-for="EstoqueDto.Preco" id="precoInput" oninput="updatePrecoTotal()  />
+					<span asp-validation-for="EstoqueDto.Preco" class="text-danger"></span>
+				</div>
+
+				<div class="col-lg-2 col-sm-4">
+					<label class="form-label">Preço Total</label>
+					<input class="form-control" disabled id="precoTotalInput" />
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary me-2">Adicionar</button>
+	<a class="btn btn-outline-primary" asp-page="/Estoques/Index" role="button">Cancelar</a>
+
+
+</form>
+
+
+
+<script>
+	function updatePrecoTotal() {
+
+		let quantidade = document.getElementById("quantidadeInput").value;
+		let preco	   = document.getElementById("precoInput").value;
+
+		if (isNaN(quantidade) || isNaN(preco)) {
+			document.getElementById("precoTotalInput").value = "0";
+		}
+		else {
+			let precoTotal = quantidade * preco;
+			document.getElementById("precoTotalInput").value = precoTotal;
+		}
+	}
+
+	updatePrecoTotal();
+</script>

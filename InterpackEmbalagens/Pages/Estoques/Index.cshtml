@@ -33,7 +33,7 @@
 				<td>@(item.DataVencimento)</td>
 				<td style="white-space:nowrap">
 					<a class="btn btn-primary btn-sm" asp-page="/Estoques/Editar" asp-route-id="@item.Id">Editar</a>
-					<a class="btn btn-danger btn-sm" asp-page="/Estoques/Delete" asp-route-id="@item.Id">Deletar</a>
+					<a class="btn btn-danger btn-sm deletar" asp-page="/Estoques/Delete" asp-route-id="@item.Id">Deletar</a>
 				</td>
 			</tr>
 		}
